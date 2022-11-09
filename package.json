@@ -8,6 +8,7 @@
   "main": "dist/mapbox-gl-draw.js",
   "browser": "dist/mapbox-gl-draw.js",
   "style": "dist/mapbox-gl-draw.css",
+  "types": "types/index.d.ts",
   "scripts": {
     "docs": "run-s docs-modes-life-cycle docs-modes-get-and-set",
     "docs-modes-get-and-set": "documentation readme --readme-file ./docs/MODES.md -s \"Setters and Getters\" src/modes/mode_interface_accessors.js --shallow",
