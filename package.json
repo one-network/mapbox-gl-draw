@@ -32,7 +32,8 @@
     "access": "restricted"
   },
   "files": [
-    "dist/mapbox-gl-draw*"
+    "dist/mapbox-gl-draw*",
+    "types/*"
   ],
   "repository": {
     "type": "git",
