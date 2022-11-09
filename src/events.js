@@ -124,7 +124,7 @@ export default function(ctx) {
     }
 
     event.originalEvent.preventDefault();
-    
+
     event.featureTarget = target;
     if (isTap(touchStartInfo, {
       time: new Date().getTime(),
