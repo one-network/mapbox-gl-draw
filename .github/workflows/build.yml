@@ -33,7 +33,7 @@ jobs:
           ./nvmw npm version 1.3.1-$(date +"%Y%m%d%H%M%S") -commit-hooks false -git-tag-version false
           ./nvmw npm publish --tag ${GITHUB_REF##*/}
           ./nvmw npm run versions
-          echo "VERSION:=$(cat ./public/version-npm.txt)" >> $GITHUB_OUTPUT
+          echo "VERSION=$(cat ./public/version-npm.txt)" >> $GITHUB_OUTPUT
         env:
           TOKEN: '${{secrets.GITHUB_TOKEN}}'
 
