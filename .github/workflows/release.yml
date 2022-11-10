@@ -16,7 +16,7 @@ jobs:
       - name: Install deps and build
         run: npm ci && npm run build
 
-      - uses: razor54/build-and-tag-action@v2
+      - uses: aboutte/build-and-tag-action@v2
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
