@@ -1,0 +1,23 @@
+name: Publish
+
+on:
+  release:
+    types: [published, edited]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Install deps and build
+        run: npm ci && npm run build
+
+      - uses: razor54/build-and-tag-action@v2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          additional_files: 'dist/mapbox-gl-draw.js,dist/mapbox-gl-draw.js.map,dist/mapbox-gl-draw-unminified.js,dist/mapbox-gl-draw-unminified.js.map,dist/bench.js,dist/bench.js.map'
