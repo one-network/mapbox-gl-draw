@@ -19,11 +19,11 @@ jobs:
         run: |
           ./nvmw npm set progress=false
           ./nvmw npm test
-          ./nvmw npm run build
+          ./nvmw npm run prepublishOnly
 
       - uses: razor54/build-and-tag-action@v2.1.2
         with:
-          additional_files: 'dist/mapbox-gl-draw.js,dist/mapbox-gl-draw.js.map,dist/mapbox-gl-draw-unminified.js,dist/mapbox-gl-draw-unminified.js.map,dist/bench.js,dist/bench.js.map,types/index.d.ts'
+          additional_files: 'dist/mapbox-gl-draw.js,dist/mapbox-gl-draw.js.map,dist/mapbox-gl-draw-unminified.js,dist/mapbox-gl-draw-unminified.js.map,dist/mapbox-gl-draw.css,dist/svg/combine.svg,dist/svg/line.svg,dist/svg/point.svg,dist/svg/polygon.svg,dist/svg/trash.svg,dist/svg/uncombine.svg,types/index.d.ts'
           js_package: 'true'
         env:
           GITHUB_TOKEN: ${{ github.token }}
