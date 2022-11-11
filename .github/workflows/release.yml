@@ -13,11 +13,17 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      - name: Install deps and build
-        run: npm ci && npm run build
+      - uses: bahmutov/npm-install@v1
 
-      - uses: razor54/build-and-tag-action@v2.1.1
+      - name: Install deps and build
+        run: |
+          ./nvmw npm set progress=false
+          ./nvmw npm test
+          ./nvmw npm run build
+
+      - uses: razor54/build-and-tag-action@v2.1.2
+        with:
+          additional_files: 'dist/mapbox-gl-draw.js,dist/mapbox-gl-draw.js.map,dist/mapbox-gl-draw-unminified.js,dist/mapbox-gl-draw-unminified.js.map,dist/bench.js,dist/bench.js.map,types/index.d.ts'
+          js_package: 'true'
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        with:
-          additional_files: 'dist/mapbox-gl-draw.js,dist/mapbox-gl-draw.js.map,dist/mapbox-gl-draw-unminified.js,dist/mapbox-gl-draw-unminified.js.map,dist/bench.js,dist/bench.js.map'
