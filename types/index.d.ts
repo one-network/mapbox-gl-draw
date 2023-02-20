@@ -407,9 +407,9 @@ declare class MapboxDraw implements IControl {
     mode: "direct_select",
     options: {
       featureId: string;
-      draggablePoint: boolean;
-      draggableLine: boolean;
-      draggablePolygon: boolean;
+      draggablePoint?: boolean;
+      draggableLine?: boolean;
+      draggablePolygon?: boolean;
     }
   ): this;
   changeMode(
