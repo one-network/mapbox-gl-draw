@@ -72,8 +72,11 @@ DirectSelect.onFeature = function(state, e) {
 };
 
 DirectSelect.dragFeature = function(state, e, delta) {
-  moveFeatures(this.getSelected(), delta);
-  state.dragMoveLocation = e.lngLat;
+  const isDraggable = (state.feature.type === Constants.geojsonTypes.POINT && state.draggablePoint) || (state.feature.type === Constants.geojsonTypes.LINE_STRING && state.draggableLine) || (state.feature.type === Constants.geojsonTypes.POLYGON && state.draggablePolygon);
+  if (isDraggable) {
+    moveFeatures(this.getSelected(), delta);
+    state.dragMoveLocation = e.lngLat;
+  }
 };
 
 DirectSelect.dragVertex = function(state, e, delta) {
@@ -128,7 +131,10 @@ DirectSelect.onSetup = function(opts) {
     dragMoveLocation: opts.startPos || null,
     dragMoving: false,
     canDragMove: false,
-    selectedCoordPaths: opts.coordPath ? [opts.coordPath] : []
+    selectedCoordPaths: opts.coordPath ? [opts.coordPath] : [],
+    draggablePoint: opts.draggablePoint,
+    draggableLine: opts.draggableLine,
+    draggablePolygon: opts.draggablePolygon
   };
 
   this.setSelectedCoordinates(this.pathsToCoordinates(featureId, state.selectedCoordPaths));
