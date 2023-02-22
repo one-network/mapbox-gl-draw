@@ -4,7 +4,7 @@ const outputFile = minified ? 'dist/mapbox-gl-draw.js' : 'dist/mapbox-gl-draw-un
 
 import replace from '@rollup/plugin-replace';
 import buble from '@rollup/plugin-buble';
-import {terser} from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 
