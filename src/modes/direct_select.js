@@ -135,9 +135,9 @@ DirectSelect.onSetup = function(opts) {
     dragMoving: false,
     canDragMove: false,
     selectedCoordPaths: opts.coordPath ? [opts.coordPath] : [],
-    draggablePoint: opts.draggablePoint !== undefined ? opts.draggablePoint : true,
-    draggableLine: opts.draggableLine !== undefined ? opts.draggableLine : true,
-    draggablePolygon: opts.draggablePolygon !== undefined ? opts.draggablePolygon : true
+    draggablePoint: opts.draggablePoint ?? true,
+    draggableLine: opts.draggableLine ?? true,
+    draggablePolygon: opts.draggablePolygon ?? true
   };
 
   this.setSelectedCoordinates(this.pathsToCoordinates(featureId, state.selectedCoordPaths));
