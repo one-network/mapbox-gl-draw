@@ -403,7 +403,15 @@ declare class MapboxDraw implements IControl {
   getMode(): (MapboxDraw.DrawMode & {}) | string;
 
   changeMode(mode: "simple_select", options?: { featureIds: string[] }): this;
-  changeMode(mode: "direct_select", options: { featureId: string }): this;
+  changeMode(
+    mode: "direct_select",
+    options: {
+      featureId: string;
+      draggablePoint?: boolean;
+      draggableLine?: boolean;
+      draggablePolygon?: boolean;
+    }
+  ): this;
   changeMode(
     mode: "draw_line_string",
     options?: { featureId: string; from: Feature<Point> | Point | number[] }
