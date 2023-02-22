@@ -72,8 +72,11 @@ DirectSelect.onFeature = function(state, e) {
 };
 
 DirectSelect.dragFeature = function(state, e, delta) {
-  const isDraggable = (state.feature.type === Constants.geojsonTypes.POINT && state.draggablePoint) || (state.feature.type === Constants.geojsonTypes.LINE_STRING && state.draggableLine) || (state.feature.type === Constants.geojsonTypes.POLYGON && state.draggablePolygon);
-  if (isDraggable) {
+  const isDraggablePoint = (state.feature.type === Constants.geojsonTypes.POINT && state.draggablePoint);
+  const isDraggableLine = (state.feature.type === Constants.geojsonTypes.LINE_STRING && state.draggableLine);
+  const isDraggablePolygon = (state.feature.type === Constants.geojsonTypes.POLYGON && state.draggablePolygon);
+
+  if (isDraggablePoint || isDraggableLine || isDraggablePolygon) {
     moveFeatures(this.getSelected(), delta);
     state.dragMoveLocation = e.lngLat;
   }
@@ -125,6 +128,7 @@ DirectSelect.onSetup = function(opts) {
     throw new TypeError('direct_select mode doesn\'t handle point features');
   }
 
+
   const state = {
     featureId,
     feature,
@@ -132,9 +136,9 @@ DirectSelect.onSetup = function(opts) {
     dragMoving: false,
     canDragMove: false,
     selectedCoordPaths: opts.coordPath ? [opts.coordPath] : [],
-    draggablePoint: opts.draggablePoint,
-    draggableLine: opts.draggableLine,
-    draggablePolygon: opts.draggablePolygon
+    draggablePoint: opts.draggablePoint !== undefined ? opts.draggablePoint : true,
+    draggableLine: opts.draggableLine !== undefined ? opts.draggableLine : true,
+    draggablePolygon: opts.draggablePolygon !== undefined ? opts.draggablePolygon : true
   };
 
   this.setSelectedCoordinates(this.pathsToCoordinates(featureId, state.selectedCoordPaths));
