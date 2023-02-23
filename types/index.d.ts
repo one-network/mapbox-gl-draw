@@ -15,11 +15,12 @@ import {
   Position,
 } from "geojson";
 import {
+  ControlPosition,
   IControl,
   Map,
   MapMouseEvent as MapboxMapMouseEvent,
   MapTouchEvent as MapboxMapTouchEvent,
-} from "mapbox-gl";
+} from "maplibre-gl";
 
 export = MapboxDraw;
 export as namespace MapboxDraw;
@@ -193,7 +194,7 @@ declare namespace MapboxDraw {
   }
 
   interface DrawCustomModeThis {
-    map: mapboxgl.Map;
+    map: maplibregl.Map;
 
     setSelected(features?: string | string[]): void;
 
@@ -358,7 +359,7 @@ declare class MapboxDraw implements IControl {
 
   modes: MapboxDraw.DrawModes;
 
-  getDefaultPosition: () => string;
+  getDefaultPosition: () => ControlPosition;
 
   constructor(options?: {
     displayControlsDefault?: boolean | undefined;
@@ -429,7 +430,7 @@ declare class MapboxDraw implements IControl {
 
   setFeatureProperty(featureId: string, property: string, value: any): this;
 
-  onAdd(map: mapboxgl.Map): HTMLElement;
+  onAdd(map: maplibregl.Map): HTMLElement;
 
-  onRemove(map: mapboxgl.Map): any;
+  onRemove(map: maplibregl.Map): any;
 }
