@@ -7,13 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2
 
-      - uses: bahmutov/npm-install@v1
+    - uses: bahmutov/npm-install@v1
 
-      - name: run test and build dist
-        run: |
-          ./nvmw npm set progress=false
-          ./nvmw npm test
-          ./nvmw npm run build
+    - name: run test and build dist
+      run: |
+        ./nvmw npm set progress=false
+        ./nvmw npm test
+        ./nvmw npm run build
+    secrets:
+      MEND_USER_KEY: ${{ secrets.MEND_USER_KEY }}
